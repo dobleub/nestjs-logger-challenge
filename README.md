@@ -13,7 +13,7 @@ Console logs achieve a purpose but, what's happen if we have an api with autosca
 
 We must to store these logs centrally. So, the storage way lets us choose one of more strategies according our needs.
 
-Your mission, if you decide to accept it... is get some statistical data about the tournaments and the teams.
+Your mission, if you decide to accept it...
 
 #### Challenges
 
