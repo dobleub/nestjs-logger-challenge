@@ -1,8 +1,8 @@
 
 ### Instructions
 
-* Clone this project and create your own challenge branches.
-* Create a public repository and push your commits using git flow.
+* Clone this project and create your own challenge branches. ✅
+* Create a public repository and push your commits using git flow. ✅
 * Share us the repository url when you finish.
 
 ### Introduction
@@ -17,8 +17,8 @@ Your mission, if you decide to accept it...
 
 #### Challenges
 
-* Create a nestjs api.
-* Enable a socket gateway in the same API server port.
+* Create a nestjs api. ✅
+* Enable a socket gateway in the same API server port. ✅
 * Expose an endpoint to send messages with dynamic event names to connected sockets:
   1. All sockets connected in a room.
   2. All sockets connected to the socket server.
