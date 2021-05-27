@@ -1,6 +1,5 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { ConfigService } from '../config/config.service';
-import { DB_OPTIONS } from '../constants';
 
 @Injectable()
 export class DatabaseService {
