@@ -1,0 +1,3 @@
+export const CONFIG_OPTIONS = 'CONFIG_OPTIONS';
+export const DB_OPTIONS = 'DB_OPTIONS';
+export const DB_CONNECTION = 'DB_CONNECTION';
