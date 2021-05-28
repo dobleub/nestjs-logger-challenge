@@ -1,5 +1,5 @@
 export class CreateEventsDto {
-  readonly name: string;
-  readonly age: number;
-  readonly breed: string;
+  readonly event: string;
+  readonly room?: string;
+  data: any;
 }

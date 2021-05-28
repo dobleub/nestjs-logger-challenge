@@ -8,8 +8,9 @@ export class EventsController {
   constructor(private readonly eventsService: EventsService) {}
 
   @Post()
-  async create(@Body() createEventsDto: CreateEventsDto) {
-    this.eventsService.create(createEventsDto);
+  async create(@Body() createEventsDto: CreateEventsDto): Promise<Event> {
+    createEventsDto.data = createEventsDto.data ? JSON.stringify(createEventsDto.data) : '';
+    return this.eventsService.create(createEventsDto);
   }
 
   @Get()
