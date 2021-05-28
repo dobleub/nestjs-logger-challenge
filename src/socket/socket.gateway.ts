@@ -10,7 +10,7 @@ import { map } from 'rxjs/operators';
 import { Server } from 'socket.io';
 
 @WebSocketGateway()
-export class EventsGateway {
+export class SocketGateway {
     @WebSocketServer()
     server: Server;
 
