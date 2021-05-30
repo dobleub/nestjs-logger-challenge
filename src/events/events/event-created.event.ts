@@ -16,4 +16,15 @@ export class EventCreatedEvent {
       this.room = room;
     }
   }
+
+  dataIsCreateOrder(data: CreateOrderData | PaidOrderData | SubscribedCustomerData): data is CreateOrderData {
+    return (<CreateOrderData>data).amount !== undefined;
+  }
+  dataIsPaidOrder(data: CreateOrderData | PaidOrderData | SubscribedCustomerData): data is PaidOrderData {
+    return (<PaidOrderData>data).paymentId !== undefined;
+  }
+  dataIsSubscribedCustomer(data: CreateOrderData | PaidOrderData | SubscribedCustomerData): data is SubscribedCustomerData {
+    return (<SubscribedCustomerData>data).suscriptionId !== undefined;
+  }
+
 }

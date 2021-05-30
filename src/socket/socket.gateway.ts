@@ -44,7 +44,7 @@ export class SocketGateway implements OnGatewayInit, OnGatewayConnection, OnGate
     }
 
     afterInit(server: Server) {
-        this.logger.log('Init');
+        this.logger.log('Socket successfully started');
     }
 
     handleConnection(client: Socket) {
