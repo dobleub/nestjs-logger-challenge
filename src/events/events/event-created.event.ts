@@ -1,9 +1,19 @@
-export class EventCreatedEvent {
-  name: string;
-  description: string;
+import { CreateOrderData, PaidOrderData, SubscribedCustomerData } from '../interfaces/event.interface';
 
-  constructor(name: string, description: string) {
-    this.name = name;
-    this.description = description;
+export class EventCreatedEvent {
+  readonly event: string;
+  readonly room?: string;
+  data: CreateOrderData | PaidOrderData | SubscribedCustomerData;
+
+  constructor(
+    event: string, 
+    data: CreateOrderData | PaidOrderData | SubscribedCustomerData, 
+    room: string = ''
+   ) {
+    this.event = event;
+    this.data = data;
+    if (room !== '') {
+      this.room = room;
+    }
   }
 }
