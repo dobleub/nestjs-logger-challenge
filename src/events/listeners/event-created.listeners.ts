@@ -1,6 +1,8 @@
-import { Injectable, Logger } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { OnEvent } from '@nestjs/event-emitter';
 import { EventCreatedEvent } from '../events/event-created.event';
+import { LogService } from '../../logger/log.service';
+import { Logger } from '@nestjs/common';
 
 @Injectable()
 export class EventCreatedListener {
@@ -8,7 +10,7 @@ export class EventCreatedListener {
   handleEventCreatedEvent(event: EventCreatedEvent) {
     // handle and process "EventCreatedEvent" event
     const logger = new Logger(event.event);
-    let log = '';
+    let log: string = '';
 
     if (event.dataIsCreateOrder(event.data)) {
       log = `orderId: ${event.data.orderId}`;

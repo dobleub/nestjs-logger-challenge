@@ -6,6 +6,6 @@ import { ConfigModule } from '../config/config.module';
 @Module({
   imports: [ConfigModule.register({ folder: './' })],
   providers: [DatabaseService, ...databaseProviders],
-  exports: [...databaseProviders],
+  exports: [DatabaseService, ...databaseProviders],
 })
 export class DatabaseModule {}

@@ -19,7 +19,7 @@ Your mission, if you decide to accept it...
 
 * Create a nestjs api. ✅
 * Enable a socket gateway in the same API server port. ✅
-* Expose an endpoint to send messages with dynamic event names to connected sockets:
+* Expose an endpoint to send messages with dynamic event names to connected sockets: ✅
   1. All sockets connected in a room.
   2. All sockets connected to the socket server.
 * Create a logger NestJS library using pattern designs and OOP that stores using:

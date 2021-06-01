@@ -10,7 +10,10 @@ const ProductSchema = new mongoose.Schema({
 const MetaDataSchema = new mongoose.Schema({
   orderId: String,
   amount: Number,
-  products: [ProductSchema],
+  products: {
+    type: [ProductSchema],
+    default: void 0
+  },
   
   paymentId: String,
   authorizationNumber: String,
