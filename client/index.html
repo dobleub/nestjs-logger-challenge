@@ -1,0 +1,33 @@
+<html>
+  <head>
+    <script src="socket.io.js"></script>
+    <script>
+      const socket = io('http://localhost:3000');
+      socket.on('connect', function() {
+        console.log('Connected');
+
+        socket.emit('joinRoom', 'connect');
+      });
+      socket.on('joinedRoom', function(data) {
+        console.log('joinedRoom', data);
+      });
+      socket.on('leftRoom', function(data) {
+        console.log('leftRoom', data);
+      });
+      socket.on('events', function(data) {
+        console.log('event', data);
+      });
+      socket.on('exception', function(data) {
+        console.log('event', data);
+      });
+      socket.on('disconnect', function() {
+        socket.emit('leaveRoom', 'disconnect');
+        console.log('Disconnected');
+      });
+
+    </script>
+  </head>
+
+  <body></body>
+</html>
+

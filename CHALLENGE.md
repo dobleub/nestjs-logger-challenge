@@ -22,7 +22,7 @@ Your mission, if you decide to accept it...
 * Expose an endpoint to send messages with dynamic event names to connected sockets: ✅
   1. All sockets connected in a room.
   2. All sockets connected to the socket server.
-* Create a logger NestJS library using pattern designs and OOP that stores using:
+* Create a logger NestJS library using pattern designs and OOP that stores using:  ✅
   1. NestJS Logger module.
   2. Javascript Console object.
   3. Mongodb
