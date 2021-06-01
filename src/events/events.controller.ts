@@ -9,7 +9,6 @@ export class EventsController {
 
   @Post()
   async create(@Body() createEventsDto: CreateEventsDto): Promise<Event> {
-    createEventsDto.data = createEventsDto.data ? JSON.stringify(createEventsDto.data) : '';
     return this.eventsService.create(createEventsDto);
   }
 

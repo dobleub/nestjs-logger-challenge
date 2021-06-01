@@ -18,10 +18,10 @@ export class EventsService {
   async create(createEventsDto: CreateEventsDto): Promise<Event> {
     const createdEvent = new this.eventModel(createEventsDto);
 
-    const eventCreatedEvent = new EventCreatedEvent(createdEvent.event, createdEvent.data);
+    const eventCreatedEvent = new EventCreatedEvent(createdEvent.event, createdEvent.data, createdEvent.room || '');
     this.eventEmitter.emit(createdEvent.event, eventCreatedEvent);
 
-    this.socketGateway.server.emit('events', { test: 'test' });
+    this.socketGateway.server.emit('events', createdEvent);
 
     return createdEvent.save();
   }

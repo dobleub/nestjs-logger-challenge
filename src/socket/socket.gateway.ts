@@ -10,6 +10,7 @@ import {
 import { from } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Server, Socket } from 'socket.io';
+import { Event } from '../events/interfaces/event.interface';
 import { Logger } from '@nestjs/common';
 
 @WebSocketGateway()
@@ -39,12 +40,12 @@ export class SocketGateway implements OnGatewayInit, OnGatewayConnection, OnGate
     }
     
     @SubscribeMessage('events')
-    hangleMessage(@MessageBody() data: any): Promise<unknown> {
+    hangleMessage(@MessageBody() data: any): Promise<Event> {
         return data;
     }
 
     afterInit(server: Server) {
-        this.logger.log('Init');
+        this.logger.log('Socket successfully started');
     }
 
     handleConnection(client: Socket) {
