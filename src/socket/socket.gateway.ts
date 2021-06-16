@@ -44,6 +44,14 @@ export class SocketGateway implements OnGatewayInit, OnGatewayConnection, OnGate
         return data;
     }
 
+    sendMessage(@MessageBody() data: any): void {
+        let clients = Object.keys(this.server.engine.clients);
+        clients.forEach((c) => {
+            this.logger.log(`Send to ${c}`);
+        });
+        this.server.emit('events', data);
+    }
+
     afterInit(server: Server) {
         this.logger.log('Socket successfully started');
     }
