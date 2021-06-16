@@ -20,13 +20,13 @@ export class EventsService {
 
     const eventCreatedEvent = new EventCreatedEvent(createdEvent.event, createdEvent.data, createdEvent.room || '');
     this.eventEmitter.emit(createdEvent.event, eventCreatedEvent);
-
-    this.socketGateway.server.emit('events', createdEvent);
+    
+    this.socketGateway.sendMessage(createdEvent);
 
     return createdEvent.save();
   }
 
   async findAll(): Promise<Event[]> {
-    return this.eventModel.find().exec();
+    return this.eventModel.find().sort({_id: -1}).exec();
   }
 }

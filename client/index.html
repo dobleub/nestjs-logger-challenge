@@ -18,7 +18,7 @@
         console.log('event', data);
       });
       socket.on('exception', function(data) {
-        console.log('event', data);
+        console.log('exception', data);
       });
       socket.on('disconnect', function() {
         socket.emit('leaveRoom', 'disconnect');
