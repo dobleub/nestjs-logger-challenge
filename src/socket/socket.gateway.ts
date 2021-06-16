@@ -44,12 +44,12 @@ export class SocketGateway implements OnGatewayInit, OnGatewayConnection, OnGate
         return data;
     }
 
-    sendMessage(@MessageBody() data: any): void {
+    sendMessage(@MessageBody() data: Event): void {
         let clients = Object.keys(this.server.engine.clients);
         clients.forEach((c) => {
             this.logger.log(`Send to ${c}`);
         });
-        this.server.emit('events', data);
+        this.server.to(this.room).emit('events', data);
     }
 
     afterInit(server: Server) {

@@ -22,7 +22,7 @@ export class LogService implements LoggerService {
           format: winston.format.combine(
             winston.format.colorize(),
             winston.format.timestamp({
-               format: 'MMM-DD-YYYY, HH:mm:ss'
+              format: 'MMM-DD-YYYY, HH:mm:ss'
             }),
             winston.format.printf(info => `[NEST] ${info.level} \t - ${[info.timestamp]} [${info.label}] ${info.message}`),
           )
@@ -30,15 +30,15 @@ export class LogService implements LoggerService {
         new winston.transports.File({
           filename: 'combined.log',
           level: 'info',
-          format: winston.format.json()
+          format: winston.format.printf(info => `[NEST] ${info.level} \t - ${[info.timestamp]} [${info.label}] ${info.message}`),
         }),
         new winstondb.MongoDB({
           level: 'info',
           //mongo database connection link
           db: databaseService.getUrl(),
           options: {
-              useNewUrlParser: true, 
-              useUnifiedTopology: true
+            useNewUrlParser: true, 
+            useUnifiedTopology: true
           },
           // A collection to save json formatted logs
           collection: 'logs'
