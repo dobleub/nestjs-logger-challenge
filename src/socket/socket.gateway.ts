@@ -47,7 +47,7 @@ export class SocketGateway implements OnGatewayInit, OnGatewayConnection, OnGate
     sendMessage(@MessageBody() data: Event): void {
         let clients = Object.keys(this.server.engine.clients);
         clients.forEach((c) => {
-            this.logger.log(`Send to ${c}`);
+            this.logger.log(`Event ${data.event} send to ${c}`);
         });
         this.server.to(this.room).emit('events', data);
     }

@@ -27,6 +27,18 @@ export class EventsService {
   }
 
   async findAll(): Promise<Event[]> {
-    return this.eventModel.find().sort({_id: -1}).exec();
+    return this.eventModel.aggregate([
+      {
+        '$match': {}
+      }, 
+      {
+        '$limit': 25
+      }, 
+      {
+        '$sort': {
+          '_id': -1
+        }
+      }
+    ]).exec();
   }
 }
