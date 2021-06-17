@@ -1,7 +1,6 @@
 import { Inject, Injectable, Logger, LoggerService } from '@nestjs/common';
-import { Model } from 'mongoose';
-import * as winston from 'winston';
-import * as winstondb from 'winston-mongodb';
+import { MongoDB } from 'winston-mongodb';
+import { createLogger, transports, format } from 'winston';
 import { DatabaseService } from '../database/database.service';
 import { ConfigOptions, LogInterface, LoggerOptions } from './interfaces/log.interface';
 import { LOG_OPTIONS } from '../constants';
@@ -15,31 +14,37 @@ export class LogService implements LoggerService {
     @Inject(LOG_OPTIONS) options: ConfigOptions,
     @Inject(DatabaseService) private readonly databaseService: DatabaseService
   ) {
-    this.winston = winston.createLogger({
+    this.winston = createLogger({
       transports: [
-        new winston.transports.Console({
+        new transports.Console({
           level: 'info',
-          format: winston.format.combine(
-            winston.format.colorize(),
-            winston.format.timestamp({
-               format: 'MMM-DD-YYYY, HH:mm:ss'
+          format: format.combine(
+            format.colorize(),
+            format.timestamp({
+              format: 'MMM-DD-YYYY, HH:mm:ss'
             }),
-            winston.format.printf(info => `[NEST] ${info.level} \t - ${[info.timestamp]} [${info.label}] ${info.message}`),
+            format.printf(info => `[NEST] ${info.level} \t - ${[info.timestamp]} [${info.label}] ${info.message}`),
           )
         }),
-        new winston.transports.File({
-          filename: 'combined.log',
+        new transports.File({
           level: 'info',
-          format: winston.format.json()
+          filename: 'combined.log',
+          format: format.combine(
+            format.timestamp({
+              format: 'MMM-DD-YYYY, HH:mm:ss'
+            }),
+            format.printf(info => `[NEST] ${info.level} \t - ${[info.timestamp]} [${info.label}] ${info.message}`),
+          )
         }),
-        new winstondb.MongoDB({
+        new MongoDB({
           level: 'info',
           //mongo database connection link
           db: databaseService.getUrl(),
           options: {
-              useNewUrlParser: true, 
-              useUnifiedTopology: true
+            useNewUrlParser: true, 
+            useUnifiedTopology: true
           },
+          storeHost: true,
           // A collection to save json formatted logs
           collection: 'logs'
         })
