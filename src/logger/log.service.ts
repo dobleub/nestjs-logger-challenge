@@ -44,6 +44,7 @@ export class LogService implements LoggerService {
             useNewUrlParser: true, 
             useUnifiedTopology: true
           },
+          storeHost: true,
           // A collection to save json formatted logs
           collection: 'logs'
         })
